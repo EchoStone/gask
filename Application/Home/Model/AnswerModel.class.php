@@ -12,5 +12,24 @@ use Home\Model\CommonModel;
  */
 class AnswerModel extends CommonModel
 {
+    public function getAnsewerNumsByUids()
+    {
+        $list = $this->query("select count(*) as anserNums, answer_user_id from gask_answer group by answer_user_id");
+        $newList = [];
+        foreach ($list as $nums) {
+            $newList[$nums['answer_user_id']] = $nums['ansernums'];
+        }
+        return $newList;
+    }
+
+    public function getListenNumsByUids()
+    {
+        $list = $this->getAllByCondition([], $field = 'sum(num) as listenNums, answer_user_id', '', 0, [], 'answer_user_id');
+        $newList = [];
+        foreach ($list as $nums) {
+            $newList[$nums['answer_user_id']] = $nums['listennums'];
+        }
+        return $newList;
+    }
 
 }
