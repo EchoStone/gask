@@ -10,13 +10,13 @@ class BaseController extends Controller
 
     public function _initialize()
     {
-        $this->initInternal();
+//        $this->initInternal();
     }
 
     private function initInternal()
     {
         if (!$this->isWxPlat()) {
-//            p('请在微信客户端打开链接');
+            p('请在微信客户端打开链接');
         }
 
         if (strtolower(ACTION_NAME) != strtolower('wxBackUrl')) {
@@ -46,6 +46,11 @@ class BaseController extends Controller
     {
         header('Location: ' . $url);
         exit();
+    }
+
+    protected function goHome()
+    {
+        $this->redirect('/');
     }
 
     protected function isLogin($isAjax = false)
