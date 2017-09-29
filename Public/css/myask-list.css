@@ -1,0 +1,156 @@
+.answer-list{
+    width: 6.4rem;
+    padding-bottom: .7rem;
+}
+.answer-list .item{
+    position: relative;
+    width: 6rem;
+    padding: .2rem;
+    background: #fff;
+    margin-bottom: .2rem;
+}
+.answer-list .item .info{
+    overflow: hidden;
+}
+.answer-list .item .info img{
+    width: .52rem;
+    height: .52rem;
+    border-radius: 100%;
+    vertical-align: middle;
+}
+.answer-list .item .info span{
+    font-size: .28rem;
+    color: #999;
+}
+.answer-list .item .ask{
+    font-size: .32rem;
+    width: 6rem;
+    padding-top: .1rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow:ellipsis;
+}
+.answer-list .item .tags{
+    position: absolute;
+    font-size: .36rem;
+    line-height: .36rem;
+    color: #00c11e;
+    top: .5rem;
+    right: .2rem;
+    margin-top: -.28rem;
+}
+.answer-list .item .outdate{
+    color: red;
+}
+
+/*个人设置*/
+.top-t{
+    overflow: hidden;
+}
+.user-info-display .sign{
+    width: 5.8rem;
+    margin: 0 auto;
+    overflow: hidden;
+    padding-top: .2rem;
+    font-size: .28rem;
+    color: #666;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.user-info-display .sign textarea{
+    width: 5.6rem;
+    height: .5rem;
+    border: 1px solid #eee;
+    color: #666;
+    padding: .1rem;
+    height: 1rem;
+    font-size: .28rem;
+    box-sizing: border-box;
+}
+.user-info-display .info .row input[type=text]{
+    border: 1px solid #eee;
+    width: 3.2rem;
+    height: .3rem;
+    color: #666;
+    padding: .1rem;
+    font-size: .28rem;
+}
+
+.user-label{
+    width: 6rem;
+    padding: .2rem;
+    background: #fff;
+    margin-top: .2rem;
+}
+.user-label .tags{
+    overflow: hidden;
+}
+.user-label .tags .add{
+    padding: .08rem .2rem;
+    text-align: center;
+    float: left;
+    border: 1px dashed #dcdcdc;
+    font-size: .28rem;
+    line-height: .28rem;
+    color: #c0c0c0;
+    background: #fff;
+    font-weight: 700;
+    color: #a6a9ac;
+    margin-right: .1rem;
+
+
+}
+.user-label .l-list{
+    background: #fff;
+    overflow: hidden;
+}
+.user-label .l-list .item{
+    margin-bottom: .2rem;
+    font-size: .28rem;
+    border: 1px solid #01c36c;
+    border-radius: 2px;
+    margin-right: .1rem;
+    color: #666;
+    line-height: .28rem;
+    float: left;
+    padding: .1rem .3rem;
+    text-align: center;
+}
+.user-label .l-list .input{
+    margin-bottom: .2rem;
+    margin-right: .1rem;
+    font-size: .28rem;
+    width: 2rem;
+    border: 1px solid #eee;
+    padding: .08rem .1rem;
+}
+.user-label .tags .add-l,
+.user-label .tags .del-l
+{
+    margin-bottom: .2rem;
+    padding: .08rem .2rem;
+    border: 1px dashed #dcdcdc;
+    font-size: .28rem;
+    line-height: .28rem;
+    color: #c0c0c0;
+    background: #fff;
+    color: #a6a9ac;
+    margin-right: .1rem;
+    display: inline-block;
+}
+.user-pay{
+    width: 6rem;
+    padding: .2rem;
+    background: #fff;
+    margin-top: .2rem;
+}
+.user-pay input[type=text]{
+    border: 1px solid #eee;
+    margin: 0 .2rem;
+    width: 1.2rem;
+    height: .3rem;
+    color: #666;
+    padding: .1rem;
+    font-size: .28rem;
+}
