@@ -32,4 +32,11 @@ class AnswerModel extends CommonModel
         return $newList;
     }
 
+    public function getAnsewerNumsByUid($userId)
+    {
+        $map['answer_user_id'] = $userId;
+        $nums = $this->getCountByCondition($map);
+        return $nums;
+    }
+
 }

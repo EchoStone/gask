@@ -60,4 +60,9 @@ class UserLogic
         $data = ["brief" => $brief, "ask_price" => $askprice];
         return $this->modelHandel->update($map, $data);
     }
+
+    public function getUserInfoById($userId){
+        return $this->modelHandel->getOneById($userId);
+    }
+
 }
