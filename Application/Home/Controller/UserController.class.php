@@ -8,7 +8,7 @@ class UserController extends BaseController {
     private $tagLogic;
     private $userId;
     public function __construct(){
-        $this->userId = 2;//session("userID");
+        $this->userId = session("userID");
         $this->logic = new UserLogic();
         $this->tagLogic = new UserTagLogic();
     }
