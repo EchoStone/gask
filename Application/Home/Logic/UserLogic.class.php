@@ -54,15 +54,19 @@ class UserLogic
 
     }
 
-    public function updateUser($userId, $brief, $askprice)
+    public function updateUser($userId, $brief, $askprice, $username='')
     {
         $map = ["id" => $userId];
-        $data = ["brief" => $brief, "ask_price" => $askprice];
+        $data = ["brief" => $brief, "ask_price" => $askprice, "username" => $username];
         return $this->modelHandel->update($map, $data);
     }
 
     public function getUserInfoById($userId){
         return $this->modelHandel->getOneById($userId);
+    }
+
+    public function logout(){
+        session('userID', null);
     }
 
 }

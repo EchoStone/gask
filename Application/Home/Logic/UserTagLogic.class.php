@@ -24,5 +24,20 @@ class UserTagLogic{
         return $this->modelHandel->del($map, [], false);
     }
 
+    public function addTags($userid, $tags){
+        foreach($tags as $tag){
+            if($tag){
+                $this->addTag($userid, $tag);
+            }
+        }
+    }
+
+    public function getTagListByUid($userId)
+    {
+        $map = ["user_id" => $userId];
+        $list =  $this->modelHandel->getAllByCondition($map, '', "id desc");
+        return $list;
+    }
+
 
 }

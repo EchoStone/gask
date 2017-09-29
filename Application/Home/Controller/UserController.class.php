@@ -26,6 +26,7 @@ class UserController extends BaseController
         $this->display('userlist');
     }
 
+
     public function detail($id)
     {
         $userInfo = D('User')->getOneById($id);
@@ -82,6 +83,5 @@ class UserController extends BaseController
             $this->jsonReturn(null, 996, "删除失败");
         }
     }
-
 
 }

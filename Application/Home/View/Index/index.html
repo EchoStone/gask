@@ -9,7 +9,15 @@
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<link rel="stylesheet" href="__PUBLIC__/css/reset.css" />
 		<link rel="stylesheet" href="__PUBLIC__/css/style.css" />
+        <link rel="stylesheet" href="__PUBLIC__/css/index.css" />
+        <link rel="stylesheet" href="__PUBLIC__/iconfont/iconfont.css" />
+        <link rel="stylesheet" href="__PUBLIC__/css/base.css" />
 		<title>首页</title>
+        <script>
+            var deviceWidth = document.documentElement.clientWidth;
+            if (deviceWidth > 640) deviceWidth = 640;
+            document.documentElement.style.fontSize = deviceWidth / 6.4 + 'px';
+        </script>
 	</head>
 
 	<body>
@@ -32,7 +40,7 @@
 									alt="" />
 							<if condition="$vo['answer_info']['id'] neq '' ">
 								<div class="home_yuyin left is-center">
-									<img class="left" src="__PUBLIC__/img/sound.png" alt="" />
+									<em></em>
 									<span>我要听</span>
 									<span class="right">{$vo['answer_info']['duration'] ? $vo['answer_info']['duration'] : 0}秒</span>
 									<div class="clear"></div>
@@ -51,13 +59,27 @@
 				</volist>
 			</ul>
 		</div>
-
+        <div class="footer-nav hbox">
+            <a  class="flex1 course active" href="/">
+                <i class="iconfont icon-home"></i>
+                <p>首页</p>
+            </a>
+            <a class="flex1 tutor " href="__APP__/User/userlist">
+                <i class="iconfont icon-wodelaoshi"></i>
+                <p>专家</p>
+            </a>
+            <a href="__APP__/Ucenter" class="flex1 user">
+                <i class="iconfont icon-meminus"></i>
+                <p>我的</p>
+            </a>
+        </div>
+        <!--
 		<div class="nav">
 			<a class="left is-center nav-active" href="/">首页</a>
 			<a class="left is-center " href="__APP__/User/userlist">专家</a>
-			<a class="left is-center" href="__APP__/My">我的</a>
+			<a class="left is-center" href="__APP__/Ucenter">我的</a>
 			<div class="clear"></div>
-		</div>
+		</div>-->
 	</body>
 
 </html>

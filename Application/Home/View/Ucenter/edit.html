@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<include file="Public:header" />
+<body>
+<form action="./upInfo" method="post" id="upForm">
+<div class="user-info-display clearfix">
+    <div class="top-t">
+        <div class="avatar">
+            <img src="http://assets.xiucai.com/assets/uploads/avatar/2017/0905/2f8f4551-6ae0-2649-483c-170c68ece90f.jpg">
+        </div>
+        <div class="info">
+            <p class="row">
+            <input type="text" name="username" value="{$userInfo.username}"></p>
+            <div class="row">
+                已回答{$userInfo.answerNums}个问题，收入<em>￥{$userInfo.wallet}元</em>
+            </div>
+        </div>
+    </div>
+    <div class="sign"><textarea name="brief">{$userInfo.brief}</textarea></div>
+</div>
+
+<!--我的标签-->
+<div class="user-label">
+    <div class="tags">
+        <p><span class="add-l">+添加</span></p>
+    </div>
+    <div class="l-list">
+        <volist name="tags" id="tag">
+        <div class="item">{$tag.tag}</div>
+        </volist>
+    </div>
+</div>
+<div class="user-pay">
+    向我提问要支付<input type="text" name="ask_price" value="{$userInfo.ask_price}">元
+</div>
+<div class="user-nav-list ">
+    <div class="user-nav logout" id="saveDo"><a href="javascript:">保存</a></div>
+</div>
+</form>
+<include file="Public:footer" />
+<script src="__PUBLIC__/js/zepto.min.js"></script>
+<script>
+    $(".add-l").on("click",function(){
+        $(".l-list").append('<input type="text" name="tags[]" class="input">')
+    });
+    $("#saveDo").on("click",function(){
+        $("#upForm").submit();
+    });
+</script>
+</body>
+</html>
