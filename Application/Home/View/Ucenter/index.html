@@ -1,25 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>用户中心</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
-    <meta content="yes" name="apple-mobile-web-app-capable" />
-    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
-    <meta content="telephone=no" name="format-detection" />
-    <title>用户中心</title>
-    <link rel="stylesheet" href="__PUBLIC__/css/base.css" />
-    <link rel="stylesheet" href="__PUBLIC__/iconfont/iconfont.css" />
-    <link rel="stylesheet" href="__PUBLIC__/css/index.css" />
-    <link rel="stylesheet" href="__PUBLIC__/css/myask-list.css" />
-    <script>
-        var deviceWidth = document.documentElement.clientWidth;
-        if (deviceWidth > 640) deviceWidth = 640;
-        document.documentElement.style.fontSize = deviceWidth / 6.4 + 'px';
-    </script>
-</head>
+<include file="Public:header" />
 <body>
 <div class="user-info-display clearfix">
     <div class="top-t">
@@ -30,7 +11,7 @@
             <p class="row">
                 <span>{$userInfo.username}</span></p>
             <div class="row">
-                已回答12个问题，收入<em>￥{$userInfo.wallet}元</em>
+                已回答{$userInfo.answerNums}个问题，收入<em>￥{$userInfo.wallet}元</em>
             </div>
         </div>
     </div>
@@ -39,36 +20,23 @@
 </div>
 <div class="user-nav-list ">
     <div class="user-nav">
-        <a href="/user/my/qa/">
-            <span class="iconfont icon-issue"></span><b>我的问答</b><span class="iconfont icon-arrow"></span>
+        <a href="/myqa/question/">
+            <span class="iconfont icon-issue"></span><b>我的提问</b><span class="iconfont icon-arrow"></span>
         </a>
-        <a href="/user/24/">
+        <a href="/myqa/answer">
             <span class="iconfont icon-chaticon"></span><b>我的回答</b><span class="iconfont icon-arrow"></span>
         </a>
     </div>
     <div class="user-nav">
-        <a href="/user/edit/">
+        <a href="/ucenter/edit/">
             <span class="iconfont icon-profile"></span><b>个人设置</b><span class="iconfont icon-arrow"></span>
         </a>
         <a href="/feedback/">
             <span class="iconfont icon-feedback"></span><b>帮助</b><span class="iconfont icon-arrow"></span>
         </a>
     </div>
-    <div class="user-nav logout"><a href="javascript:">退出登录</a></div>
+    <!--<div class="user-nav logout"><a href="javascript:">退出登录</a></div>-->
 </div>
-<div class="footer-nav hbox">
-    <a  class="flex1 course ">
-        <i class="iconfont icon-home"></i>
-        <p>首页</p>
-    </a>
-    <a class="flex1 tutor ">
-        <i class="iconfont icon-wodelaoshi"></i>
-        <p>专家</p>
-    </a>
-    <a href="javascript:;" class="flex1 user active">
-        <i class="iconfont icon-meminus"></i>
-        <p>我的</p>
-    </a>
-</div>
+<include file="Public:footer" />
 </body>
 </html>

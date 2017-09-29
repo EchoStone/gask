@@ -17,44 +17,8 @@ class UserController extends BaseController {
         $this->jsonReturn($list);
     }
 
-    public function userUpdate(){
-        $brief = I("brief");
-        $askprice= I("askprice");
-
-        if(!$brief || !$askprice){
-            $this->jsonReturn(null, 999, "参数不能为空");
-        }
-
-        $upresult = $this->logic->updateUser($this->userId, $brief, $askprice);
-        if($upresult){
-            $this->jsonReturn("");
-        } else {
-            $this->jsonReturn(null, 998, "更新失败");
-        }
+    public function logout(){
 
     }
 
-    public function addUserFlag(){
-        $flag = I("flag");
-        if($flag === ""){
-            $this->jsonReturn(null, 999, "参数不能为空");
-        }
-        if($this->tagLogic->addTag($this->userId, $flag)){
-            $this->jsonReturn("");
-        } else {
-            $this->jsonReturn(null, 997, "添加失败");
-        }
-    }
-
-    public function delUserFlag(){
-        $flagId = I("flagId");
-        if(empty($flagId)){
-            $this->jsonReturn(null, 999, "参数不能为空");
-        }
-        if($this->tagLogic->delTag($this->userId, $flagId)){
-            $this->jsonReturn("");
-        } else {
-            $this->jsonReturn(null, 996, "删除失败");
-        }
-    }
 }

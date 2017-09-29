@@ -39,8 +39,6 @@ class QuestionLogic{
 
         return $list;
     }
-    /*
-    public function get
-    */
+
 
 }
