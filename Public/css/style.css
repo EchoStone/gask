@@ -3,9 +3,12 @@
 .home_list{padding: 0.1rem;margin-bottom: 0.1rem;background: #fff;}
 .home_list:last-child{margin-bottom: 0;}
 .home_list_title{color: #333;font-size: 0.16rem;margin-bottom: 0.2rem;line-height: 0.24rem;}
+.home_list_info{margin-bottom: 0.1rem;color: #ccc;}
+.home_list_info span{padding-right: 0.05rem;margin-right: 0.05rem;line-height: 0.16rem;font-size: 0.14rem;border-right: 1px solid #666;}
+.home_list_info ul li{margin-right: 0.05rem;font-size: 0.14rem;line-height: 0.16rem;}
 .home_himg{width: 0.4rem;height: 0.4rem;border-radius: 50%;margin-right: 0.1rem;}
-.home_yuyin{height: 0.4rem;width: 2.5rem;box-sizing: border-box;line-height: 0.4rem;padding: 0 0.2rem;font-size: 0.12rem;}
-.home_yuyin img{width: 0.2rem;height: 0.1rem;margin-top: 0.15rem;}
+.home_yuyin{height: 0.4rem;width: 2.5rem;box-sizing: border-box;line-height: 0.4rem;padding: 0 0.2rem;font-size: 0.12rem;background: red;color: #fff;}
+.home_yuyin img{width: 0.2rem;height: 0.2rem;margin-top: 0.1rem;}
 .home_list_ask{margin-bottom: 0.1rem;}
 .home_date{font-size: 0.12rem;color: #666;width: 2.8rem;}
 

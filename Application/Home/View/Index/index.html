@@ -19,86 +19,41 @@
 
 		<div style="padding-bottom: 0.6rem;">
 			<ul>
-				<li class="home_list">
-					<p class="home_list_title">问我若破位认可我我让我认为人外人看我</p>
-					<div class="home_list_ask">
-						<img class="home_himg left" src="" alt="" />
-						<div class="home_yuyin left is-center">
-							<img class="left" src="" alt="" />
-							<span>一元刮开看看</span>
-							<span class="right">00:49</span>
+				<volist name="data" id="vo">
+					<li class="home_list">
+						<p class="home_list_title">{$vo.content}</p>
+						<div class="home_list_ask">
+							<img class="home_himg left"
+								<if condition="$vo['user_info']['head_url'] neq ''">
+									src={$vo['user_info']['head_url']}
+								<else/>
+								 	src=__PUBLIC__/img/headerImg.jpg"
+								</if>
+									alt="" />
+							<if condition="$vo['answer_info']['id'] neq '' ">
+								<div class="home_yuyin left is-center">
+									<img class="left" src="__PUBLIC__/img/sound.png" alt="" />
+									<span>我要听</span>
+									<span class="right">{$vo['answer_info']['duration'] ? $vo['answer_info']['duration'] : 0}秒</span>
+									<div class="clear"></div>
+								</div>
+							<else/>
+								暂无回答
+							</if>
 							<div class="clear"></div>
 						</div>
-						<div class="clear"></div>
-					</div>
-					<div class="home_date">
-						<span class="left">就天前</span>
-						<span class="right">0人听过</span>
-						<div class="clear"></div>
-					</div>
-				</li>
-				
-				<li class="home_list">
-					<p class="home_list_title">问我若破位认可我我让我认为人外人看我</p>
-					<div class="home_list_ask">
-						<img class="home_himg left" src="" alt="" />
-						<div class="home_yuyin left is-center">
-							<img class="left" src="" alt="" />
-							<span>一元刮开看看</span>
-							<span class="right">00:49</span>
+						<div class="home_date">
+							<span class="left">{$vo.created_at|date='Y-m-d H:i:s',###}</span>
+							<span class="right">{$vo['answer_info']['num'] ? $vo['answer_info']['num'] : 0}人听过</span>
 							<div class="clear"></div>
 						</div>
-						<div class="clear"></div>
-					</div>
-					<div class="home_date">
-						<span class="left">就天前</span>
-						<span class="right">0人听过</span>
-						<div class="clear"></div>
-					</div>
-				</li>
-
-				<li class="home_list">
-					<p class="home_list_title">问我若破位认可我我让我认为人外人看我</p>
-					<div class="home_list_ask">
-						<img class="home_himg left" src="" alt="" />
-						<div class="home_yuyin left is-center">
-							<img class="left" src="" alt="" />
-							<span>一元刮开看看</span>
-							<span class="right">00:49</span>
-							<div class="clear"></div>
-						</div>
-						<div class="clear"></div>
-					</div>
-					<div class="home_date">
-						<span class="left">就天前</span>
-						<span class="right">0人听过</span>
-						<div class="clear"></div>
-					</div>
-				</li>
-
-				<li class="home_list">
-					<p class="home_list_title">问我若破位认可我我让我认为人外人看我</p>
-					<div class="home_list_ask">
-						<img class="home_himg left" src="" alt="" />
-						<div class="home_yuyin left is-center">
-							<img class="left" src="" alt="" />
-							<span>一元刮开看看</span>
-							<span class="right">00:49</span>
-							<div class="clear"></div>
-						</div>
-						<div class="clear"></div>
-					</div>
-					<div class="home_date">
-						<span class="left">就天前</span>
-						<span class="right">0人听过</span>
-						<div class="clear"></div>
-					</div>
-				</li>
+					</li>
+				</volist>
 			</ul>
 		</div>
 
 		<div class="nav">
-			<a class="left is-center nav-active" href="index.html">首页</a>
+			<a class="left is-center nav-active" href="/">首页</a>
 			<a class="left is-center" href="expert.html">专家</a>
 			<a class="left is-center" href="user.html">我的</a>
 			<div class="clear"></div>
