@@ -9,7 +9,6 @@ class QuestionController extends BaseController
     public function add()
     {
         $userID = session('userID');
-        $userID = 1;
         $postData = I('post.');
         $nowTime = time();
         $data = [];
@@ -30,7 +29,8 @@ class QuestionController extends BaseController
         $data['user_id'] = $userID;
         $data['answer_user_id'] = $answerUserId;
         $data['is_reply'] = 0;
-        $data['duration'] = $postData['duration'];
+        $data['duration'] = 0;
+        $data['price'] = $answerUserInfo['ask_price'];
         $data['created_at'] = $nowTime;
         $data['updated_at'] = $nowTime;
         $qId = D('Question')->insert($data);
@@ -56,9 +56,37 @@ class QuestionController extends BaseController
     public function answer()
     {
         $userID = session('userID');
-        $userID = 1;
         $postData = I('post.');
+        $nowTime = time();
+        $qId = $postData['q_id'];
+        $questionInfo = D('Question')->getOneById($qId);
+        $data = [];
+        $data['q_id'] = $qId;
+        $data['answer_user_id'] = $userID;
+        $data['voice_url'] = $postData['voice_url'];
+        $data['created_at'] = $nowTime;
+        $data['updated_at'] = $nowTime;
+        $data['q_user_id'] = $questionInfo['user_id'];
+        $data['duration'] = $postData['duration'];
+        $data['num'] = 1;
 
+        $answerID = D('Answer')->insert($data);
+        $logData = [];
+        $logData['user_id'] = $userID;
+        $logData['money'] = $questionInfo['price'];
+        $logData['answer_id'] = $answerID;
+        $logData['answer_user_id'] = $userID;
+        $logData['type'] = 1;
+        $logData['q_id'] = $qId;
+        $logData['created_at'] = $nowTime;
+        $logData['updated_at'] = $nowTime;
+        $moneyLogModel = D('MoneyLog');
+        $moneyLogModel->insert($logData);
 
+        $logUpdataMap = [];
+        $logUpdataMap['user_id'] = $questionInfo['user_id'];
+        $logUpdataMap['q_id'] = $qId;
+        $moneyLogModel->update($logUpdataMap, ['type' => 3, 'updated_at' => $nowTime, 'answer_id' => $answerID]);
+        $this->jsonReturn();
     }
 }

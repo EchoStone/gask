@@ -8,6 +8,38 @@ class IndexController extends BaseController
      */
     public function index()
     {
+        $data = D('Question')->getAllByCondition([], '', 'id desc');
+        if (!empty($data)) {
+            $userIdArray = [];
+            $qIdArray = [];
+            foreach ($data as $v) {
+                $userIdArray[] = (int)$v['user_id'];
+                $qIdArray[] = $v['id'];
+            }
+            $userInfoTemp = D('User')->getAllByCondition(['id' => ['in', $userIdArray]]);
+            foreach ($userInfoTemp as $item) {
+                $userInfo[$item['id']] = $item;
+            }
+            //回答
+
+            $answerInfoTemp = D('Answer')->getAllByCondition(['q_id' => ['in', $qIdArray]]);
+            foreach ($answerInfoTemp as $item){
+                $answerInfo[$item['q_id']] = $item;
+            }
+
+            foreach ($data as &$v) {
+                $v['user_info'] = [];
+                if (isset($userInfo[$v['user_id']])) {
+                    $v['user_info'] = $userInfo[$v['user_id']];
+                }
+                $v['answer_info'] = [];
+                if (isset($answerInfo[$v['id']])) {
+                    $v['answer_info'] = $answerInfo[$v['id']];
+                }
+            }
+        }
+//        p($data);
+        $this->assign('data', $data);
         $this->display();
     }
 
