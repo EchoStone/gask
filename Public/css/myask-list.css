@@ -209,3 +209,19 @@
     font-size: .24rem;
     margin-right: .1rem;
 }
+.help-content{
+    min-height: calc(100vh - .88rem);
+    width: 6.4rem;
+    height: 5.4rem;
+    background: #fff;
+
+}
+.help-content .pic{
+    background:url("../img/help-pic.jpg") no-repeat;
+    background-size: 100% 100%;
+    width: 6rem;
+    height: 5.09rem;
+    margin: 0 auto;
+    padding-top: .5rem;
+
+}
