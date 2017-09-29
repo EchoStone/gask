@@ -8,10 +8,7 @@ class UserController extends BaseController {
         $this->logic = new UserLogic();
     }
     public function userList(){
-        $page = I("page", 1);
-        $pagesize = I("pagesize");
-
-        $list = $this->logic->getUserList($page, $pagesize);
-        return $this->jsonReturn($list);
+        $list = $this->logic->getUserList();
+        $this->jsonReturn($list);
     }
 }
