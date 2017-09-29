@@ -10,7 +10,9 @@ class BaseController extends Controller
 
     public function _initialize()
     {
+
 //        $this->initInternal();
+
     }
 
     private function initInternal()

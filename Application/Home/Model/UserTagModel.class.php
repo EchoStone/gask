@@ -10,7 +10,7 @@ use Home\Model\CommonModel;
  *
  * @author Stone
  */
-class UserModel extends CommonModel
+class UserTagModel extends CommonModel
 {
 
 }
