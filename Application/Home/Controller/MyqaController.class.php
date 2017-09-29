@@ -12,7 +12,12 @@ class MyqaController extends BaseController{
     }
     public function question(){
         $list = $this->logic->getMyQuestionList($this->userId);
-        //print_r($list);
+        $this->assign('list', $list);
+        $this->display();
+    }
+
+    public function answer(){
+        $list = $this->logic->getMyAnswerList($this->userId);
         $this->assign('list', $list);
         $this->display();
     }

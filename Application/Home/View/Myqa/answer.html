@@ -23,7 +23,7 @@
 <div class="btn-group-top">
     <div class="back iconfont icon-arrowleft" onclick="javascript:history.go(-1);"></div>
 </div>
-    <div class="title">我的提问</div>
+    <div class="title">我的回答</div>
 </header>
 <div class="answer-list">
     <volist name="list" id="data">
@@ -32,7 +32,7 @@
             <a href="#">
                 <div class="info">
                     <img src="{$data.head_url}" alt="">
-                    <span>{$data.brief}没有回答你的问题</span>
+                    <span>你没有回答{$data.brief}的问题</span>
                 </div>
                 <div class="ask">{$data.content}</div>
             </a>
@@ -43,14 +43,14 @@
                 <a href="#">
                     <div class="info">
                         <img src="{$data.head_url}" alt="">
-                        <span>{$data.brief}回答了你的问题</span>
+                        <span>你回答了{$data.brief}的问题</span>
                     </div>
                     <div class="ask">{$data.content}</div>
-                    <div class="user-audio-btn">
-                        <div class="begin"><em></em><b>播放答案</b><span>34"</span></div>
-                    </div>
                 </a>
                 <div class="tags">已回答</div>
+                <div class="user-audio-btn">
+                    <div class="begin"><em></em><b>播放答案</b><span>34"</span></div>
+                </div>
             </div>
             </if>
     </volist>
