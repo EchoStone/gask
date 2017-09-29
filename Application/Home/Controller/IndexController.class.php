@@ -71,7 +71,7 @@ class IndexController extends BaseController
         } else {
             //插入 =
             $data = [];
-            $data['username'] = empty($userInfo['nickname']) ? '高小财' : $userInfo['nickname'];
+            $data['username'] = empty($userInfo['nickname']) ? '问小财' : $userInfo['nickname'];
             $data['brief'] = '我很懒的哟~';
             $data['wx_openid'] = $openid;
             $data['head_url'] = empty($userInfo['headimgurl']) ? '' : $userInfo['headimgurl'];

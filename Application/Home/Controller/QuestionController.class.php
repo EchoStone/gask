@@ -28,7 +28,7 @@ class QuestionController extends BaseController
         }
         $myInfo = $userModel->getOneById($userID);
 
-        $ye = $myInfo['wallet'] - $answerUserInfo['ask_price'];
+        $ye = round($myInfo['wallet'] - $answerUserInfo['ask_price'], 2);
         if ($ye < 0) {
             $this->jsonReturn([], '997', '您的余额不够!');
         }
@@ -64,7 +64,6 @@ class QuestionController extends BaseController
     public function answer()
     {
         $userID = session('userID');
-        $userID = 1;
         $postData = I('post.');
         $nowTime = time();
         $qId = $postData['q_id'];
@@ -98,6 +97,36 @@ class QuestionController extends BaseController
         $moneyLogModel->update($logUpdataMap, ['type' => 3, 'updated_at' => $nowTime, 'answer_id' => $answerID]);
 
         D('User')->where(['id' => $userID])->setInc('wallet', $questionInfo['price']);
+
+        $listen = [];
+        $listen['q_id'] = $qId;
+        $listen['answer_id'] = $answerID;
+        $listen['user_id'] = $questionInfo['user_id'];
+        $listen['created_at'] = $nowTime;
+        $listen['updated_at'] = $nowTime;
+        D('Listener')->insert($listen);
         $this->jsonReturn();
     }
+
+    /**
+     * 偷听
+     */
+    public function tou()
+    {
+        $userID = session('userID');
+        $userID = 1;
+        $postData = I('post.');
+        $qId = $postData['q_id'];
+        $answerID = $postData['answer_id'];
+        $nowTime = time();
+        $listen = [];
+        $listen['q_id'] = $qId;
+        $listen['answer_id'] = $answerID;
+        $listen['user_id'] = $userID;
+        $listen['created_at'] = $nowTime;
+        $listen['updated_at'] = $nowTime;
+
+        D('Listener')->insert($listen);
+    }
+
 }
