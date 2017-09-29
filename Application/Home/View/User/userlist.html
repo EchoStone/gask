@@ -8,8 +8,18 @@
 		<meta name="format-detection" content="telephone=yes">
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<link rel="stylesheet" href="__PUBLIC__/css/reset.css" />
+        <link rel="stylesheet" href="__PUBLIC__/css/base.css" />
 		<link rel="stylesheet" href="__PUBLIC__/css/style.css" />
+        <link rel="stylesheet" href="__PUBLIC__/css/index.css" />
+        <link rel="stylesheet" href="__PUBLIC__/iconfont/iconfont.css" />
+
+
 		<title>专家</title>
+        <script>
+            var deviceWidth = document.documentElement.clientWidth;
+            if (deviceWidth > 640) deviceWidth = 640;
+            document.documentElement.style.fontSize = deviceWidth / 6.4 + 'px';
+        </script>
 	</head>
 
 	<body>
@@ -53,13 +63,27 @@
 
 			</ul>
 		</div>
-
+<!--
 		<div class="nav">
 			<a class="left is-center" href="/">首页</a>
 			<a class="left is-center nav-active" href="__APP__/User/userlist">专家</a>
-			<a class="left is-center" href="__APP__/My">我的</a>
+			<a class="left is-center" href="__APP__/ucenter">我的</a>
 			<div class="clear"></div>
-		</div>
+		</div>-->
+        <div class="footer-nav hbox">
+            <a  class="flex1" href="/">
+                <i class="iconfont icon-home"></i>
+                <p>首页</p>
+            </a>
+            <a class="flex1 tutor active" href="__APP__/User/userlist">
+                <i class="iconfont icon-wodelaoshi"></i>
+                <p>专家</p>
+            </a>
+            <a href="__APP__/Ucenter" class="flex1 user">
+                <i class="iconfont icon-meminus"></i>
+                <p>我的</p>
+            </a>
+        </div>
 	</body>
 
 </html>
