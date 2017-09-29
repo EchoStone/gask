@@ -76,7 +76,7 @@ class IndexController extends BaseController
             $data['wx_openid'] = $openid;
             $data['head_url'] = empty($userInfo['headimgurl']) ? '' : $userInfo['headimgurl'];
             $data['ask_price'] = 1;
-            $data['wallet'] = 0;
+            $data['wallet'] = 1000;
             $data['login_at'] = $nowTime;
             $id = $userModel->insert($data);
         }

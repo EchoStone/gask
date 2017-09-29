@@ -1,13 +1,14 @@
 <?php
 namespace Home\Controller;
 use Home\Logic\QuestionLogic;
+use Home\Service\JsSdkService;
 
 class MyqaController extends BaseController{
     private $logic;
     private $userId;
     public function __construct(){
         parent::__construct();
-        $this->userId = session("userID");
+        $this->userId = 2;
         $this->logic = new QuestionLogic();
     }
     public function question(){
@@ -18,7 +19,9 @@ class MyqaController extends BaseController{
 
     public function answer(){
         $list = $this->logic->getMyAnswerList($this->userId);
+        $signPackage = (new JsSdkService())->GetSignPackage();
         $this->assign('list', $list);
+        $this->assign('signPackage', $signPackage);
         $this->display();
     }
 }
