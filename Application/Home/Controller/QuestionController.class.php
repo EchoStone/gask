@@ -55,6 +55,10 @@ class QuestionController extends BaseController
      */
     public function answer()
     {
+        $userID = session('userID');
+        $userID = 1;
+        $postData = I('post.');
+
 
     }
 }
