@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>用户中心-</title>
+    <title>用户中心</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
     <meta content="yes" name="apple-mobile-web-app-capable" />
     <meta content="black" name="apple-mobile-web-app-status-bar-style" />
     <meta content="telephone=no" name="format-detection" />
+    <title>用户中心</title>
     <link rel="stylesheet" href="__PUBLIC__/css/base.css" />
     <link rel="stylesheet" href="__PUBLIC__/iconfont/iconfont.css" />
     <link rel="stylesheet" href="__PUBLIC__/css/index.css" />
@@ -19,44 +20,44 @@
         document.documentElement.style.fontSize = deviceWidth / 6.4 + 'px';
     </script>
 </head>
-<body><header>
-<div class="btn-group-top">
-    <div class="back iconfont icon-arrowleft" onclick="javascript:history.go(-1);"></div>
-</div>
-    <div class="title">我的回答</div>
-</header>
-<div class="answer-list">
-    <volist name="list" id="data">
-        <if condition="$data['is_reply'] eq 0">
-        <div class="item">
-            <a href="#">
-                <div class="info">
-                    <img src="{$data.head_url}" alt="">
-                    <span>你没有回答{$data.username}的问题</span>
-                </div>
-                <div class="ask">{$data.content}</div>
-            </a>
-            <div class="tags" style="color:red">未回答</div>
+<body>
+<div class="user-info-display clearfix">
+    <div class="top-t">
+        <div class="avatar">
+            <img src="{$userInfo.head_url}">
         </div>
-        <else/>
-            <div class="item">
-                <a href="#">
-                    <div class="info">
-                        <img src="{$data.head_url}" alt="">
-                        <span>你回答了{$data.username}的问题</span>
-                    </div>
-                    <div class="ask">{$data.content}</div>
-                </a>
-                <div class="tags">已回答</div>
-                <div class="user-audio-btn">
-                    <div class="begin"><em></em><b>播放答案</b><span>34"</span></div>
-                </div>
+        <div class="info">
+            <p class="row">
+                <span>{$userInfo.username}</span></p>
+            <div class="row">
+                已回答12个问题，收入<em>￥{$userInfo.wallet}元</em>
             </div>
-            </if>
-    </volist>
+        </div>
+    </div>
+    <div class="sign">签名：{$userInfo.brief}</div>
+
+</div>
+<div class="user-nav-list ">
+    <div class="user-nav">
+        <a href="/user/my/qa/">
+            <span class="iconfont icon-issue"></span><b>我的问答</b><span class="iconfont icon-arrow"></span>
+        </a>
+        <a href="/user/24/">
+            <span class="iconfont icon-chaticon"></span><b>我的回答</b><span class="iconfont icon-arrow"></span>
+        </a>
+    </div>
+    <div class="user-nav">
+        <a href="/user/edit/">
+            <span class="iconfont icon-profile"></span><b>个人设置</b><span class="iconfont icon-arrow"></span>
+        </a>
+        <a href="/feedback/">
+            <span class="iconfont icon-feedback"></span><b>帮助</b><span class="iconfont icon-arrow"></span>
+        </a>
+    </div>
+    <div class="user-nav logout"><a href="javascript:">退出登录</a></div>
 </div>
 <div class="footer-nav hbox">
-    <a class="flex1 course ">
+    <a  class="flex1 course ">
         <i class="iconfont icon-home"></i>
         <p>首页</p>
     </a>

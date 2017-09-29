@@ -14,7 +14,7 @@ class QuestionLogic{
     {
         $map = ["q.user_id" => $userId];
         //($map = [], $field = '', $order = '', $limit = 0, $join = [], $group = '')
-        $field = 'q.*,u.brief,u.head_url,a.voice_url';
+        $field = 'q.*,u.username,u.head_url,a.voice_url';
         $join = [
             'tablename' => 'gask_question',
             'brief' => 'q',
@@ -29,7 +29,7 @@ class QuestionLogic{
     {
         $map = ["q.answer_user_id" => $userId];
         //($map = [], $field = '', $order = '', $limit = 0, $join = [], $group = '')
-        $field = 'q.*,u.brief,u.head_url,a.voice_url';
+        $field = 'q.*,u.username,u.head_url,a.voice_url';
         $join = [
             'tablename' => 'gask_question',
             'brief' => 'q',
@@ -39,5 +39,8 @@ class QuestionLogic{
 
         return $list;
     }
+    /*
+    public function get
+    */
 
 }
