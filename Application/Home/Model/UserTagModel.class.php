@@ -12,5 +12,10 @@ use Home\Model\CommonModel;
  */
 class UserTagModel extends CommonModel
 {
-
+    public function getTagListByIds($ids)
+    {
+        $map['user_id'] = ["in", $ids];
+        $list =  $this->getAllByCondition($map, '', "id desc");
+        return $list;
+    }
 }
