@@ -15,12 +15,14 @@ class BaseController extends Controller
 
     private function initInternal()
     {
-        if (!$this->isWxPlat()) {
+        $isAjax = IS_POST ? true : false;
+
+        if (!$this->isWxPlat() && !$isAjax) {
             p('请在微信客户端打开链接');
         }
 
         if (strtolower(ACTION_NAME) != strtolower('wxBackUrl')) {
-            $this->isLogin();
+            $this->isLogin($isAjax);
         }
     }
 
@@ -34,7 +36,7 @@ class BaseController extends Controller
             p('未配置回调地址'); // TODO
         }
         $returnUrl = 'http://' . $_SERVER['HTTP_HOST'] . '/Index/wxBackUrl';
-        $url = 'http://wxmanage.gaodun.com/api/wxshouquan.php?returnurl=' .$returnUrl;
+        $url = 'http://wxmanage.gaodun.com/api/wxshouquan.php?returnurl=' . $returnUrl;
         $this->redirectToOutLink($url);
     }
 
