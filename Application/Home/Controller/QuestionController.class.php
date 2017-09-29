@@ -7,7 +7,7 @@ class QuestionController extends BaseController
     public function addView($uid)
     {
         $answerUserId = $uid;
-        $this->assign('answer_user_id',$answerUserId);
+        $this->assign('answer_user_id', $answerUserId);
         $this->display('addview');
     }
 
@@ -55,7 +55,7 @@ class QuestionController extends BaseController
         if (!empty($logId)) {
             $userModel->update(['id' => $userID], ['wallet' => $ye]);
         }
-        $this->jsonReturn();
+        $this->goHome();
     }
 
     /**
@@ -64,6 +64,7 @@ class QuestionController extends BaseController
     public function answer()
     {
         $userID = session('userID');
+        $userID = 1;
         $postData = I('post.');
         $nowTime = time();
         $qId = $postData['q_id'];
@@ -95,6 +96,8 @@ class QuestionController extends BaseController
         $logUpdataMap['user_id'] = $questionInfo['user_id'];
         $logUpdataMap['q_id'] = $qId;
         $moneyLogModel->update($logUpdataMap, ['type' => 3, 'updated_at' => $nowTime, 'answer_id' => $answerID]);
+
+        D('User')->where(['id' => $userID])->setInc('wallet', $questionInfo['price']);
         $this->jsonReturn();
     }
 }

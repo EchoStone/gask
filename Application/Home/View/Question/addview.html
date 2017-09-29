@@ -9,10 +9,10 @@
     <meta content="yes" name="apple-mobile-web-app-capable" />
     <meta content="black" name="apple-mobile-web-app-status-bar-style" />
     <meta content="telephone=no" name="format-detection" />
-    <link rel="stylesheet" href="css/base.css" />
-    <link rel="stylesheet" href="iconfont/iconfont.css" />
-    <link rel="stylesheet" href="css/index.css" />
-    <link rel="stylesheet" href="css/myask-list.css" />
+    <link rel="stylesheet" href="__PUBLIC__/css/base.css" />
+    <link rel="stylesheet" href="__PUBLIC__/iconfont/iconfont.css" />
+    <link rel="stylesheet" href="__PUBLIC__/css/index.css" />
+    <link rel="stylesheet" href="__PUBLIC__/css/myask-list.css" />
     <script>
         var deviceWidth = document.documentElement.clientWidth;
         if (deviceWidth > 640) deviceWidth = 640;
@@ -20,17 +20,21 @@
     </script>
 </head>
 <body>
+<form action="__URL__/add" method="post">
 <header>
     <div class="btn-group-top">
         <div class="back iconfont icon-arrowleft" onclick="javascript:history.go(-1);"></div>
     </div>
-    <div class="title">开始提问</div>
+    <div class="title" placeholder="请输入你的问题">开始提问</div>
 </header>
 <div class="ticket-step1">
-    <input type="text" title="标题" placeholder="请输入你的问题" class="input-title cookie_title" value="">
+    <textarea name="content" placeholder="输入你的问题"></textarea>
+    <input type="hidden" name="answer_user_id" value="{$answer_user_id}">
+
     <div class="user-ask-btn">
-        <span>提问</span>
+        <input type="submit" value="提问">
     </div>
 </div>
+</form>
 </body>
 </html>
