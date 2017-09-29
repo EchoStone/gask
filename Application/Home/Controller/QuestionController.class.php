@@ -118,7 +118,6 @@ class QuestionController extends BaseController
     public function tou()
     {
         $userID = session('userID');
-        $userID = 3;
         $postData = I('post.');
         $qId = $postData['q_id'];
 

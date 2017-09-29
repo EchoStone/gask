@@ -8,7 +8,7 @@ class MyqaController extends BaseController{
     private $userId;
     public function __construct(){
         parent::__construct();
-        $this->userId = 2;
+        $this->userId = session('userID');
         $this->logic = new QuestionLogic();
     }
     public function question(){
