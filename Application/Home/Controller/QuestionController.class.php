@@ -203,7 +203,7 @@ class QuestionController extends BaseController
             $listenerModel->insert($listen);
             $this->jsonReturn();
         }
-
+        $this->jsonReturn();
     }
 
 }
