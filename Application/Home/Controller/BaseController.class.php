@@ -74,7 +74,7 @@ class BaseController extends Controller
     /**
      *返回json格式
      */
-    protected function jsonReturn($data = [], $status = 0, $info = '', $callback = '')
+    protected function jsonReturn($data = [], $status = 0, $info = '请求成功', $callback = '')
     {
         $rData = [];
         $rData['status'] = $status;

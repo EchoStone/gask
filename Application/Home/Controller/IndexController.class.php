@@ -27,26 +27,28 @@ class IndexController extends BaseController
         $openid = $userInfo['openid'];
         $map = [];
         $map['wx_openid'] = $openid;
-        $isExist = $userModel->getCountByCondition($map);
+        $isExist = $userModel->getOneByCondition($map, 'id');
         $nowTime = time();
-        if ($isExist > 0) {
+        if (!empty($isExist)) {
             //更新
             $update = [];
             $update['login_at'] = $nowTime;
-            $userModel->update($map, $update);
+            $id = $isExist['id'];
+            $userModel->update($map, ['id' => $id]);
 
         } else {
-            //插入
+            //插入 =
             $data = [];
             $data['username'] = empty($userInfo['nickname']) ? '高小财' : $userInfo['nickname'];
             $data['brief'] = '我很懒的哟~';
             $data['wx_openid'] = $openid;
             $data['head_url'] = empty($userInfo['headimgurl']) ? '' : $userInfo['headimgurl'];
-            $data['ask_price'] = 0;
+            $data['ask_price'] = 1;
             $data['wallet'] = 0;
             $data['login_at'] = $nowTime;
-            $userModel->insert($data);
+            $id = $userModel->insert($data);
         }
+        session('userID', $id);
         $this->goHome();
     }
 }
