@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="keywords" content="" />
+		<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<link rel="stylesheet" href="__PUBLIC__/css/reset.css" />
+		<link rel="stylesheet" href="__PUBLIC__/css/style.css" />
+		<title>专家详情</title>
+	</head>
+
+	<body>
+       <div class="expertDetail_top">
+       	   <img class="left expertDetail_img"
+
+			   <if condition="$userInfo['head_url'] neq '' ">
+				   src="{$userInfo['head_url']}"
+				   <else/>
+				   src="__PUBLIC__/img/headerImg.jpg"
+			   </if>
+				alt="" />
+       	   
+       	   <div class="left expertDetail_info">
+       	   	   <span>{$userInfo['username']}</span>
+       	   	   <ul class="expertDetail_biaoqian">
+				   <volist name="userInfo['tags']" id="vo">
+	       	   	   	<li class="left">{$vo.tag}</li>
+				   </volist>
+	       	   	   	<div class="clear"></div>
+       	   	   </ul>
+       	   	   
+       	   	   <ul class="expertDetail_work">
+       	   	   	   <li class="left">{$userInfo['brief']}</li>
+       	   	   	   <div class="clear"></div>
+       	   	   </ul>
+       	   </div>
+       	   
+       	   <div class="right expertDetail_ask">
+       	   	   <div>￥{$userInfo['ask_price']}</div>
+			   <if condition="$now_user_id neq $userInfo['id']">
+				   <a href="__APP__/Question/addView/uid/{$userInfo['id']}">提问</a>
+			   </if>
+       	   </div>
+       	   
+       	   <div class="clear"></div>
+       </div>
+       <!--
+       <div class="expertDetail_guanzhu">
+       	    <span class="left is_guanzhu">已关注</span>
+       	    <span class="left much_guanzhu">3人关注</span>
+       	    <ul class="right">
+       	    	<li class="left">
+       	    		<img src="__PUBLIC__/img/headerImg.jpg" alt="" />
+       	    	</li>
+       	    	
+       	    	<li class="left">
+       	    		<img src="__PUBLIC__/img/headerImg.jpg" alt="" />
+       	    	</li>
+       	    	
+       	    	<li class="left">
+       	    		<img src="__PUBLIC__/img/headerImg.jpg" alt="" />
+       	    	</li>
+       	    	<div class="clear"></div>
+       	    </ul>
+       	    <div class="clear"></div>
+       </div>
+       -->
+	   <!--
+       <div style="padding-bottom: 0.6rem;">
+       	    <ul>
+       	    	<li class="home_list">
+					<p style="margin-bottom: 0.1rem;" class="home_list_title">问我若破位认可我我让我认为人外人看我</p>
+					
+					<div class="home_list_info">
+					    <span class="left">王清兵</span>
+					    <ul>
+					    	<li class="left">主治医生</li>
+					    	<li class="left">主治医生</li>
+					    	<div class="clear"></div>
+					    </ul>
+					</div>
+					
+					<div class="home_list_ask">
+						<img class="home_himg left" src="__PUBLIC__/img/headerImg.jpg" alt="" />
+						<div class="home_yuyin left is-center">
+							<img class="left" src="__PUBLIC__/img/sound.png" alt="" />
+							<span>一元刮开看看</span>
+							<span class="right">00:49</span>
+							<div class="clear"></div>
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="home_date">
+						<span class="left">就天前</span>
+						<span class="right">0人听过</span>
+						<div class="clear"></div>
+					</div>
+				</li>
+				
+				<li class="home_list">
+					<p style="margin-bottom: 0.1rem;" class="home_list_title">问我若破位认可我我让我认为人外人看我</p>
+					
+					<div class="home_list_info">
+					    <span class="left">王清兵</span>
+					    <ul>
+					    	<li class="left">主治医生</li>
+					    	<li class="left">主治医生</li>
+					    	<div class="clear"></div>
+					    </ul>
+					</div>
+					
+					<div class="home_list_ask">
+						<img class="home_himg left" src="__PUBLIC__/img/headerImg.jpg" alt="" />
+						<div class="home_yuyin left is-center">
+							<img class="left" src="__PUBLIC__/img/sound.png" alt="" />
+							<span>一元刮开看看</span>
+							<span class="right">00:49</span>
+							<div class="clear"></div>
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="home_date">
+						<span class="left">就天前</span>
+						<span class="right">0人听过</span>
+						<div class="clear"></div>
+					</div>
+				</li>
+				
+				<li class="home_list">
+					<p style="margin-bottom: 0.1rem;" class="home_list_title">问我若破位认可我我让我认为人外人看我</p>
+					
+					<div class="home_list_info">
+					    <span class="left">王清兵</span>
+					    <ul>
+					    	<li class="left">主治医生</li>
+					    	<li class="left">主治医生</li>
+					    	<div class="clear"></div>
+					    </ul>
+					</div>
+					
+					<div class="home_list_ask">
+						<img class="home_himg left" src="__PUBLIC__/img/headerImg.jpg" alt="" />
+						<div class="home_yuyin left is-center">
+							<img class="left" src="__PUBLIC__/img/sound.png" alt="" />
+							<span>一元刮开看看</span>
+							<span class="right">00:49</span>
+							<div class="clear"></div>
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="home_date">
+						<span class="left">就天前</span>
+						<span class="right">0人听过</span>
+						<div class="clear"></div>
+					</div>
+				</li>
+       	    </ul>
+       </div>
+-->
+	   <div class="nav">
+		   <a class="left is-center" href="/">首页</a>
+		   <a class="left is-center nav-active" href="__APP__/User/userlist">专家</a>
+		   <a class="left is-center" href="__APP__/My">我的</a>
+		   <div class="clear"></div>
+	   </div>
+	</body>
+
+</html>
