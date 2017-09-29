@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="keywords" content="" />
+		<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<link rel="stylesheet" href="__PUBLIC__/css/reset.css" />
+		<link rel="stylesheet" href="__PUBLIC__/css/style.css" />
+		<title>专家</title>
+	</head>
+
+	<body>
+
+		<div style="padding-bottom: 0.6rem;">
+			<ul>
+				<volist name="list" id="vo">
+					<li class="expert_list">
+						<a href="__URL__/detail/id/{$vo.id}">
+							<img class="left expert_himg"
+								 <if condition="$vo['head_url'] neq '' ">
+									 src="{$vo['head_url']}"
+								 <else/>
+									 src="__PUBLIC__/img/headerImg.jpg"
+								 </if>
+								alt="" />
+
+							<div class="left expert_info">
+								<div class="expert_info_list1">
+									<span class="left">{$vo.username}</span>
+									<volist name="vo.tag" id="tvo">
+										<span class="left expert_biaoqian">{$tvo}</span>
+									</volist>
+									<div class="clear"></div>
+								</div>
+
+								<p class="expert_info_list2">{$vo.brief}</p>
+
+								<div class="expert_info_list3">
+									<span class="left">{$vo.anserNums}个回答</span>
+									<span class="left">{$vo.listenNums}人收听</span>
+									<div class="clear"></div>
+								</div>
+							</div>
+
+							<div class="clear"></div>
+						</a>
+
+					</li>
+				</volist>
+
+			</ul>
+		</div>
+
+		<div class="nav">
+			<a class="left is-center" href="/">首页</a>
+			<a class="left is-center nav-active" href="__APP__/User/userlist">专家</a>
+			<a class="left is-center" href="__APP__/My">我的</a>
+			<div class="clear"></div>
+		</div>
+	</body>
+
+</html>

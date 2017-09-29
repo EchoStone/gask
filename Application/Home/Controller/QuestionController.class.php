@@ -3,6 +3,14 @@
 namespace Home\Controller;
 class QuestionController extends BaseController
 {
+
+    public function addView($uid)
+    {
+        $answerUserId = $uid;
+        $this->assign('answer_user_id',$answerUserId);
+        $this->display('addview');
+    }
+
     /**
      * 提问
      */
