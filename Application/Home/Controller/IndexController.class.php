@@ -1,6 +1,9 @@
 <?php
 
 namespace Home\Controller;
+
+use Home\Service\JsSdkService;
+
 class IndexController extends BaseController
 {
     /**
@@ -38,7 +41,8 @@ class IndexController extends BaseController
                 }
             }
         }
-//        p($data);
+        $signPackage = (new JsSdkService())->GetSignPackage();
+        $this->assign('signPackage', $signPackage);
         $this->assign('data', $data);
         $this->display();
     }

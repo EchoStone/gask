@@ -12,6 +12,9 @@
         <link rel="stylesheet" href="__PUBLIC__/css/index.css" />
         <link rel="stylesheet" href="__PUBLIC__/iconfont/iconfont.css" />
         <link rel="stylesheet" href="__PUBLIC__/css/base.css" />
+
+		<script src="__PUBLIC__/js/jquery-1.12.4.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 		<title>首页</title>
         <script>
             var deviceWidth = document.documentElement.clientWidth;
@@ -39,7 +42,7 @@
 								</if>
 									alt="" />
 							<if condition="$vo['answer_info']['id'] neq '' ">
-								<div class="home_yuyin left is-center">
+								<div data-qid="{$vo['answer_info']['q_id']}" class="home_yuyin left is-center play" data-url="{$vo['answer_info']['voice_url']}">
 									<em></em>
 									<span>我要听</span>
 									<span class="right">{$vo['answer_info']['duration'] ? $vo['answer_info']['duration'] : 0}秒</span>
@@ -60,7 +63,7 @@
 			</ul>
 		</div>
         <div class="footer-nav hbox">
-            <a  class="flex1 course active" href="/">
+            <a  class="flex1 active" href="/">
                 <i class="iconfont icon-home"></i>
                 <p>首页</p>
             </a>
@@ -82,4 +85,193 @@
 		</div>-->
 	</body>
 
+
+	<script>
+        /*
+         * 注意：
+         * 1. 所有的JS接口只能在公众号绑定的域名下调用，公众号开发者需要先登录微信公众平台进入“公众号设置”的“功能设置”里填写“JS接口安全域名”。
+         * 2. 如果发现在 Android 不能分享自定义内容，请到官网下载最新的包覆盖安装，Android 自定义分享接口需升级至 6.0.2.58 版本及以上。
+         * 3. 常见问题及完整 JS-SDK 文档地址：http://mp.weixin.qq.com/wiki/7/aaa137b55fb2e0456bf8dd9148dd613f.html
+         *
+         * 开发中遇到问题详见文档“附录5-常见错误及解决办法”解决，如仍未能解决可通过以下渠道反馈：
+         * 邮箱地址：weixin-open@qq.com
+         * 邮件主题：【微信JS-SDK反馈】具体问题
+         * 邮件内容说明：用简明的语言描述问题所在，并交代清楚遇到该问题的场景，可附上截屏图片，微信团队会尽快处理你的反馈。
+         */
+        wx.config({
+            debug: true,
+            appId: '{$signPackage["appId"]}',
+            timestamp: '{$signPackage["timestamp"]}',
+            nonceStr: '{$signPackage["nonceStr"]}',
+            signature: '{$signPackage["signature"]}',
+            jsApiList: [
+                // 所有要调用的 API 都要加到这个列表中
+//      'checkJsApi',
+//      'onMenuShareTimeline',
+//      'onMenuShareAppMessage',
+//      'onMenuShareQQ',
+//      'onMenuShareWeibo',
+//      'onMenuShareQZone',
+//      'hideMenuItems',
+//      'showMenuItems',
+//      'hideAllNonBaseMenuItem',
+//      'showAllNonBaseMenuItem',
+                'translateVoice',
+                'startRecord',
+                'stopRecord',
+                'onVoiceRecordEnd',
+                'playVoice',
+                'onVoicePlayEnd',
+                'pauseVoice',
+                'stopVoice',
+                'uploadVoice',
+                'downloadVoice'
+//      'chooseImage',
+//      'previewImage',
+//      'uploadImage',
+//      'downloadImage',
+//      'getNetworkType',
+//      'openLocation',
+//      'getLocation',
+//      'hideOptionMenu',
+//      'showOptionMenu',
+//      'closeWindow',
+//      'scanQRCode',
+//      'chooseWXPay',
+//      'openProductSpecificView',
+//      'addCard',
+//      'chooseCard',
+//      'openCard'
+            ]
+        });
+	</script>
+
 </html>
+
+<script type="text/javascript">
+
+
+    var AJAX_URL = '__APP__';
+
+
+    var i = 0;
+    var timer = ""
+    var length =0;//语音长度
+    var voice ={}
+    var j = 0;
+    $('.gotoask').click(function() {
+        var gotaskhandle = $(this);
+        gotaskhandle.html('结束回答');
+        var qid = gotaskhandle.attr('data-qid');
+        i++;
+        if(i % 2 == 1) {
+            timer = setInterval(function() {
+                j++;
+                if(j >= 60) {
+                    length = j;
+                    clearInterval(timer);
+                    wx.stopRecord({
+                        success: function(res) {
+                            alert(length)
+                            voice.localId = res.localId;
+                            wx.uploadVoice({
+                                localId: voice.localId,
+                                success: function (res) {
+                                    //上传成功
+                                    gotaskhandle.html('已回答').removeClass('gotoask')
+                                    answer(qid,res.serverId,length);
+                                    voice.serverId = res.serverId;
+                                }
+                            });
+                        },
+                        fail: function(res) {
+                            alert(JSON.stringify(res));
+                        }
+                    });
+                }
+
+            }, 1000)
+            wx.startRecord({
+                cancel: function() {
+                    alert('用户拒绝授权录音');
+                }
+            });
+        } else if(i % 2 == 0) {
+            clearInterval(timer);
+            wx.stopRecord({
+                success: function(res) {
+                    voice.localId = res.localId;
+                    wx.uploadVoice({
+                        localId: voice.localId,
+                        success: function (res) {
+                            //上传成功
+                            answer(qid,res.serverId,length);
+                            gotaskhandle.html('已回答').removeClass('gotoask');
+                            voice.serverId = res.serverId;
+                        }
+                    });
+                },
+                fail: function(res) {
+                    alert(JSON.stringify(res));
+                }
+            });
+        }
+        length = j;
+        j = 0;
+    });
+
+    function answer(qid,voice_url,duration){
+        $.post(
+            AJAX_URL+"/Question/answer",
+            {q_id:qid,voice_url:voice_url,duration:duration},
+            function(data){
+                if(data.status == '101'){
+                    location.href = AJAX_URL;
+                }else{
+                    window.location.reload();
+                }
+            });
+
+    }
+
+
+    $('.play').click(function  () {
+        var serverId = $(this).attr('data-url');
+        if(!serverId){
+            alert('播放失败');
+            return '';
+        }
+
+        var qid = $(this).attr('data-qid');
+        $.post(
+            AJAX_URL+"/Question/tou",
+            {q_id:qid},
+            function(data){
+                if(data.status == '101'){
+                    location.href = AJAX_URL;
+                }else if(data.status != '0'){
+                    alert(data['info']);
+                    return '';
+                }else {
+                    wx.downloadVoice({
+                        serverId: serverId,
+                        success: function (res) {
+//		        alert('下载语音成功，localId 为' + res.localId);
+                            voice.localId = res.localId;
+                            if (voice.localId == '') {
+                                alert('请先使用 startRecord 接口录制一段声音');
+                                return;
+                            }
+                            wx.playVoice({
+                                localId: voice.localId
+                            });
+                        }
+                    });
+				}
+            },'json');
+
+
+
+    })
+
+</script>

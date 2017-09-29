@@ -191,8 +191,8 @@ class QuestionController extends BaseController
 
             $userModel->where(['id' => $answerUserId])->setInc('wallet', $devPrice);
             $userModel->where(['id' => $questionInfo['user_id']])->setInc('wallet', $devPrice);
+            $userModel->where(['id' => $userID])->setDec('wallet', $questionInfo['price']);
 
-            $answerID = $postData['answer_id'];
             $nowTime = time();
             $listen = [];
             $listen['q_id'] = $qId;
