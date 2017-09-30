@@ -139,7 +139,8 @@ class QuestionController extends BaseController
                 $this->jsonReturn([], '997', '您的余额不够!');
             }
 
-            $answerInfo = D('Answer')->getOneByCondition(['q_id' => $qId]);
+            $answerModel = D('Answer');
+            $answerInfo = $answerModel->getOneByCondition(['q_id' => $qId]);
 
             if ($answerInfo['answer_user_id'] == $userID) {
                 $this->jsonReturn();
@@ -188,7 +189,7 @@ class QuestionController extends BaseController
             $moneyLogModel = D('MoneyLog');
             $moneyLogModel->insertAll($logData);
 
-
+            // 更新每个人的金额
             $userModel->where(['id' => $answerUserId])->setInc('wallet', $devPrice);
             $userModel->where(['id' => $questionInfo['user_id']])->setInc('wallet', $devPrice);
             $userModel->where(['id' => $userID])->setDec('wallet', $questionInfo['price']);
@@ -201,6 +202,9 @@ class QuestionController extends BaseController
             $listen['created_at'] = $nowTime;
             $listen['updated_at'] = $nowTime;
             $listenerModel->insert($listen);
+
+            // 收听人数+1
+            $answerInfo->where(['id' => $answerID])->setInc('num');
             $this->jsonReturn();
         }
         $this->jsonReturn();
